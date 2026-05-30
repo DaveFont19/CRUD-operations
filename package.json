@@ -1,0 +1,30 @@
+{
+  "name": "w03-crud-project",
+  "version": "1.0.0",
+  "description": "W03 Project - CRUD Operations with MongoDB, validation, error handling and API documentation",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "mongodb",
+    "crud",
+    "api"
+  ],
+  "author": "David Fontes",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.6.1",
+    "express": "^4.22.2",
+    "express-validator": "^7.3.2",
+    "mongodb": "^6.21.0",
+    "swagger-ui-express": "^5.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}

@@ -1,0 +1,154 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "W03 CRUD API",
+    "description": "API documentation for products and customers CRUD operations.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    { "url": "http://localhost:3000", "description": "Local" },
+    { "url": "https://your-render-url.onrender.com", "description": "Render" }
+  ],
+  "paths": {
+    "/products": {
+      "get": {
+        "summary": "Get all products",
+        "responses": { "200": { "description": "Products retrieved successfully" } }
+      },
+      "post": {
+        "summary": "Create a new product",
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Product" } } }
+        },
+        "responses": {
+          "201": { "description": "Product created successfully" },
+          "400": { "description": "Validation failed" }
+        }
+      }
+    },
+    "/products/{id}": {
+      "get": {
+        "summary": "Get one product by ID",
+        "parameters": [{ "$ref": "#/components/parameters/ProductId" }],
+        "responses": {
+          "200": { "description": "Product retrieved successfully" },
+          "404": { "description": "Product not found" }
+        }
+      },
+      "put": {
+        "summary": "Update a product by ID",
+        "parameters": [{ "$ref": "#/components/parameters/ProductId" }],
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Product" } } }
+        },
+        "responses": {
+          "204": { "description": "Product updated successfully" },
+          "400": { "description": "Validation failed" },
+          "404": { "description": "Product not found" }
+        }
+      },
+      "delete": {
+        "summary": "Delete a product by ID",
+        "parameters": [{ "$ref": "#/components/parameters/ProductId" }],
+        "responses": {
+          "204": { "description": "Product deleted successfully" },
+          "404": { "description": "Product not found" }
+        }
+      }
+    },
+    "/customers": {
+      "get": {
+        "summary": "Get all customers",
+        "responses": { "200": { "description": "Customers retrieved successfully" } }
+      },
+      "post": {
+        "summary": "Create a new customer",
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Customer" } } }
+        },
+        "responses": {
+          "201": { "description": "Customer created successfully" },
+          "400": { "description": "Validation failed" }
+        }
+      }
+    },
+    "/customers/{id}": {
+      "get": {
+        "summary": "Get one customer by ID",
+        "parameters": [{ "$ref": "#/components/parameters/CustomerId" }],
+        "responses": {
+          "200": { "description": "Customer retrieved successfully" },
+          "404": { "description": "Customer not found" }
+        }
+      },
+      "put": {
+        "summary": "Update a customer by ID",
+        "parameters": [{ "$ref": "#/components/parameters/CustomerId" }],
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Customer" } } }
+        },
+        "responses": {
+          "204": { "description": "Customer updated successfully" },
+          "400": { "description": "Validation failed" },
+          "404": { "description": "Customer not found" }
+        }
+      },
+      "delete": {
+        "summary": "Delete a customer by ID",
+        "parameters": [{ "$ref": "#/components/parameters/CustomerId" }],
+        "responses": {
+          "204": { "description": "Customer deleted successfully" },
+          "404": { "description": "Customer not found" }
+        }
+      }
+    }
+  },
+  "components": {
+    "parameters": {
+      "ProductId": {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "schema": { "type": "string" },
+        "description": "MongoDB product ID"
+      },
+      "CustomerId": {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "schema": { "type": "string" },
+        "description": "MongoDB customer ID"
+      }
+    },
+    "schemas": {
+      "Product": {
+        "type": "object",
+        "required": ["name", "description", "category", "price", "stock", "brand", "sku"],
+        "properties": {
+          "name": { "type": "string", "example": "Laptop" },
+          "description": { "type": "string", "example": "Powerful laptop for programming" },
+          "category": { "type": "string", "example": "Electronics" },
+          "price": { "type": "number", "example": 899.99 },
+          "stock": { "type": "integer", "example": 15 },
+          "brand": { "type": "string", "example": "Lenovo" },
+          "sku": { "type": "string", "example": "LEN-001" }
+        }
+      },
+      "Customer": {
+        "type": "object",
+        "required": ["firstName", "lastName", "email", "phone", "city"],
+        "properties": {
+          "firstName": { "type": "string", "example": "David" },
+          "lastName": { "type": "string", "example": "Fontes" },
+          "email": { "type": "string", "example": "david@example.com" },
+          "phone": { "type": "string", "example": "3121234567" },
+          "city": { "type": "string", "example": "Colima" }
+        }
+      }
+    }
+  }
+}
