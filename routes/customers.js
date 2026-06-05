@@ -2,6 +2,7 @@ const express = require('express');
 const { body, param } = require('express-validator');
 const customersController = require('../controllers/customersController');
 const validate = require('../middleware/validate');
+const authValidation = require("../middleware/authentication");
 
 const router = express.Router();
 
@@ -19,8 +20,8 @@ const idValidation = [
 
 router.get('/', customersController.getAllCustomers);
 router.get('/:id', idValidation, validate, customersController.getSingleCustomer);
-router.post('/', customerValidation, validate, customersController.createCustomer);
-router.put('/:id', idValidation, customerValidation, validate, customersController.updateCustomer);
-router.delete('/:id', idValidation, validate, customersController.deleteCustomer);
+router.post('/', authValidation, customerValidation, validate, customersController.createCustomer);
+router.put('/:id', authValidation, idValidation, customerValidation, validate, customersController.updateCustomer);
+router.delete('/:id', authValidation, idValidation, validate, customersController.deleteCustomer);
 
 module.exports = router;

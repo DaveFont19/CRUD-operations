@@ -6,7 +6,8 @@
     "version": "1.0.0"
   },
   "servers": [
-    { "url": "https://crud-operations-1-hwg3.onrender.com", "description": "Render" }
+    { "url": "https://crud-operations-1-hwg3.onrender.com", "description": "Render" },
+    { "url": "http://localhost:3000", "description": "Local Development" }
   ],
   "paths": {
     "/products": {
